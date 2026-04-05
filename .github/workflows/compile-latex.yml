@@ -1,0 +1,49 @@
+name: Compilar LaTeX → PDF
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "**.tex"
+      - ".github/workflows/compile-latex.yml"
+  pull_request:
+    paths:
+      - "**.tex"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Compilar main.tex
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Compilar con LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: false
+          latexmk_shell_escape: false
+
+      - name: Subir PDF como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: ApuntesInferencia-PDF
+          path: main.pdf
+          retention-days: 30
+
+      - name: Publicar PDF en GitHub Releases (solo rama main)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: pdf-latest
+          name: "Apuntes — última versión"
+          body: "PDF generado automáticamente a partir del commit ${{ github.sha }}"
+          files: main.pdf
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
