@@ -1,0 +1,45 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+*.xdy
+*.ist
+*.loa
+*.lol
+
+# Compiled PDF (optional: comment out if you want to track the PDF)
+# main.pdf
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/launch.json
+
+# Temporary files
+*~
+*.tmp
+*.bak

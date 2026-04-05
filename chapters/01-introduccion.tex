@@ -1,0 +1,61 @@
+% ============================================================
+%  Capítulo 1 — Introducción a la Inferencia Estadística
+% ============================================================
+\section{Introducción a la Inferencia Estadística}
+
+\subsection{¿Qué es la inferencia estadística?}
+
+La \textbf{inferencia estadística} es la rama de la estadística que se ocupa de
+extraer conclusiones sobre una \emph{población} a partir de la información
+contenida en una \emph{muestra}.
+
+\begin{defi}[Población]
+  Conjunto completo de individuos u observaciones sobre los cuales se desea
+  obtener información.
+\end{defi}
+
+\begin{defi}[Muestra]
+  Subconjunto de la población que se selecciona para su estudio.
+\end{defi}
+
+\begin{defi}[Parámetro]
+  Característica numérica de la \emph{población} (generalmente desconocida),
+  denotada habitualmente por letras griegas: $\theta$, $\mu$, $\sigma^2$, etc.
+\end{defi}
+
+\begin{defi}[Estadístico]
+  Función de los datos de la muestra, $T = T(X_1, \ldots, X_n)$, que no depende
+  de ningún parámetro desconocido.
+\end{defi}
+
+\subsection{Modelo estadístico}
+
+Sea $X_1, X_2, \ldots, X_n \iid f(\cdot\,;\theta)$ una muestra aleatoria
+simple (m.a.s.) de tamaño $n$ proveniente de una distribución con f.d.p.\ o
+f.m.p.\ $f$, donde $\theta \in \Theta$ es el parámetro de interés.
+
+\begin{teo}[Ley de los Grandes Números fuerte]
+  Sea $X_1, X_2, \ldots$ una sucesión de variables aleatorias i.i.d.\ con
+  $\E[X_1] = \mu < \infty$. Entonces
+  \[
+    \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{\text{c.s.}} \mu
+    \quad \text{cuando } n \to \infty.
+  \]
+\end{teo}
+
+\begin{obs}
+  La LGN justifica el uso de la media muestral $\bar{X}_n$ como estimador
+  de $\mu = \E[X]$.
+\end{obs}
+
+\subsection{Tipos de inferencia}
+
+\begin{enumerate}
+  \item \textbf{Estimación puntual}: obtener un único valor $\hat{\theta}$ como
+        estimación de $\theta$.
+  \item \textbf{Estimación por intervalos}: construir un intervalo
+        $[L, U]$ que contenga a $\theta$ con una probabilidad prefijada
+        $(1-\alpha)$.
+  \item \textbf{Pruebas de hipótesis}: decidir entre dos hipótesis sobre
+        $\theta$ a partir de la evidencia muestral.
+\end{enumerate}
