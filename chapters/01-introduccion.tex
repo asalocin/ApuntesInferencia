@@ -508,6 +508,8 @@ se obtiene
 \sum_{k\in\mathbb{N}} h(k)\,P(X=k).
 \]
 
+
+
 \subsection{Función característica}
 
 Sea $X$ una variable aleatoria con valores en $\mathbb{R}^d$, es decir,
@@ -690,459 +692,833 @@ Es decir,
 \varphi_W(t)=\exp\left(imt-\frac{\sigma^2 t^2}{2}\right).
 \]
 
-\subsection{Modos de convergencia}
-
-Hasta ahora hemos estudiado variables aleatorias, sus leyes, independencia y función característica. El siguiente paso natural es comparar sucesiones de variables aleatorias y precisar en qué sentido una sucesión puede \emph{converger}.
-
-Sean $X,X_1,X_2,\dots$ variables aleatorias reales definidas sobre un mismo espacio de probabilidad.
-
-\begin{defi}[Convergencia casi segura]
-Decimos que $X_n$ converge \textbf{casi seguramente} a $X$, y escribimos
-\[
-X_n \xrightarrow{\text{c.s.}} X,
-\]
-si
-\[
-P\big(\{\omega\in\Omega : X_n(\omega)\to X(\omega)\}\big)=1.
-\]
-\end{defi}
-
-\begin{defi}[Convergencia en probabilidad]
-Decimos que $X_n$ converge \textbf{en probabilidad} a $X$, y escribimos
-\[
-X_n \xrightarrow{P} X,
-\]
-si para todo $\varepsilon>0$,
-\[
-P(|X_n-X|>\varepsilon)\to 0.
-\]
-\end{defi}
-
-\begin{defi}[Convergencia en \texorpdfstring{$L^p$}{Lp}]
-Para $1\le p<\infty$, decimos que $X_n$ converge a $X$ en $L^p$, y escribimos
-\[
-X_n \xrightarrow{L^p} X,
-\]
-si
-\[
-\E[|X_n-X|^p]\to 0.
-\]
-\end{defi}
-
-\begin{defi}[Convergencia en distribución]
-Decimos que $X_n$ converge \textbf{en distribución} a $X$, y escribimos
-\[
-X_n \xrightarrow{d} X,
-\]
-si para todo punto de continuidad $x$ de la FDA $F_X$,
-\[
-F_{X_n}(x)\to F_X(x).
-\]
-\end{defi}
-
-\subsubsection*{Relaciones entre los distintos modos de convergencia}
-
-\textbf{Proposición:}
-\[
-X_n \xrightarrow{\mathrm{c.s.}} X
-\quad\Longrightarrow\quad
-X_n \xrightarrow{P} X
-\quad\Longrightarrow\quad
-X_n \xrightarrow{d} X.
-\]
-
-Además, para todo $p\ge 1$,
-\[
-X_n \xrightarrow{L^p} X
-\quad\Longrightarrow\quad
-X_n \xrightarrow{P} X.
-\]
-
 \medskip
 
 \noindent
-\textbf{Observación:} la recíproca de estas implicaciones es falsa en general.
-
-\medskip
-
-\noindent
-\textbf{Observación importante:} si $c\in\mathbb{R}$ es una constante, entonces
+\textbf{Observación:} a diferencia de la función generadora de momentos
 \[
-X_n \xrightarrow{d} c
-\quad\Longleftrightarrow\quad
-X_n \xrightarrow{P} c.
+M_X(t)=\E(e^{tX}),
 \]
-
-Es decir, cuando el límite es determinista, convergencia en distribución y convergencia en probabilidad coinciden.
-
-\subsubsection*{Criterio en términos de funciones características}
-
-La función característica permite estudiar convergencia en distribución de manera muy eficiente.
-
-\begin{teo}[Teorema de continuidad de Lévy]
-Sean $X_n$ y $X$ variables aleatorias con valores en $\mathbb{R}^d$. Entonces
+la función característica siempre está bien definida, pues
 \[
-X_n \xrightarrow{d} X
+|e^{itX}|=1.
 \]
-si y solo si
-\[
-\varphi_{X_n}(t)\to \varphi_X(t),
-\qquad \forall t\in\mathbb{R}^d.
-\]
-\end{teo}
-
-Este resultado será la herramienta fundamental para demostrar el Teorema Central del Límite.
-
-\subsection{Leyes de los grandes números}
-
-Sea $(X_n)_{n\ge 1}$ una sucesión de variables aleatorias i.i.d.\ con
-\[
-\mu=\E[X_1].
-\]
-Definimos el promedio muestral por
-\[
-\overline{X}_n=\frac{1}{n}\sum_{i=1}^n X_i.
-\]
-
-La intuición básica es que, al promediar muchas observaciones independientes con la misma ley, el promedio muestral debería acercarse al valor esperado.
-
-\subsubsection*{Ley débil de los grandes números}
-
-\begin{teo}[Ley Débil de los Grandes Números]
-Si $X_1,X_2,\dots$ son i.i.d.\ y
-\[
-\E[X_1]=\mu,
-\qquad
-\Var(X_1)=\sigma^2<\infty,
-\]
-entonces
-\[
-\overline{X}_n \xrightarrow{P} \mu.
-\]
-\end{teo}
-
-\subsubsection*{Demostración}
-
-Como las variables son i.i.d., se tiene
-\[
-\E[\overline{X}_n]
-=
-\E\left[\frac{1}{n}\sum_{i=1}^n X_i\right]
-=
-\frac{1}{n}\sum_{i=1}^n \E[X_i]
-=
-\mu.
-\]
-
-Además, por independencia,
-\[
-\Var(\overline{X}_n)
-=
-\Var\left(\frac{1}{n}\sum_{i=1}^n X_i\right)
-=
-\frac{1}{n^2}\sum_{i=1}^n \Var(X_i)
-=
-\frac{n\sigma^2}{n^2}
-=
-\frac{\sigma^2}{n}.
-\]
-
-Luego, por la desigualdad de Chebyshev, para todo $\varepsilon>0$,
-\[
-P(|\overline{X}_n-\mu|>\varepsilon)
-\le
-\frac{\Var(\overline{X}_n)}{\varepsilon^2}
-=
-\frac{\sigma^2}{n\varepsilon^2}
-\to 0.
-\]
-
 Por lo tanto,
 \[
-\overline{X}_n \xrightarrow{P} \mu.
+|\varphi_X(t)|=\left|\E(e^{itX})\right|\leq \E(|e^{itX}|)=1.
 \]
-\hfill $\square$
+En cambio, la función generadora de momentos puede no existir para todo \(t\).
 
-\subsubsection*{Ley fuerte de los grandes números}
-
-\begin{teo}[Ley Fuerte de los Grandes Números]
-Si $X_1,X_2,\dots$ son i.i.d.\ y
+\begin{teo}[Unicidad de la función característica]
+Sean \(X\) e \(Y\) variables aleatorias con valores en \(\mathbb{R}^d\). Si
 \[
-\E[|X_1|]<\infty,
+\varphi_X(t)=\varphi_Y(t), \qquad \forall t\in\mathbb{R}^d,
 \]
 entonces
 \[
-\overline{X}_n \xrightarrow{\mathrm{c.s.}} \mu,
-\qquad \mu=\E[X_1].
+P_X=P_Y.
 \]
 \end{teo}
 
 \medskip
 
 \noindent
-\textbf{Observación:} la ley fuerte es más fuerte que la ley débil, pues la convergencia casi segura implica convergencia en probabilidad.
+\textbf{Proposición:} sea \(X\) una variable aleatoria real.
 
-\subsubsection*{Interpretación estadística}
-
-Si $X_1,\dots,X_n$ representan observaciones de una misma población, entonces la ley de los grandes números justifica que el promedio muestral
+\begin{itemize}
+\item[(1)] Si \(k\in\mathbb{N}\) y
 \[
-\overline{X}_n
+\E(|X|^k)<\infty,
 \]
-sea un buen estimador de la media poblacional
+entonces \(\varphi_X\) es \(k\)-veces derivable y, para todo \(j=1,\dots,k\),
 \[
-\mu=\E[X_1].
+\varphi_X^{(j)}(t)=\E\big((iX)^j e^{itX}\big).
 \]
-
-Por ejemplo, si $X_i\sim \mathrm{Bernoulli}(p)$ i.i.d., entonces
+En particular,
 \[
-\overline{X}_n=\frac{1}{n}\sum_{i=1}^n X_i
-\]
-es la proporción muestral de éxitos, y la ley de los grandes números afirma que
-\[
-\overline{X}_n \xrightarrow{P} p
-\qquad
-\text{e incluso}
-\qquad
-\overline{X}_n \xrightarrow{\mathrm{c.s.}} p.
+\varphi_X^{(j)}(0)=i^j \E(X^j), \qquad j=1,\dots,k.
 \]
 
-\subsection{Teorema Central del Límite}
-
-La ley de los grandes números describe el comportamiento del promedio muestral \emph{sin escala}. El siguiente problema natural es entender las fluctuaciones de $\overline{X}_n$ alrededor de $\mu$ a una escala adecuada.
-
-\begin{teo}[Teorema Central del Límite de Lindeberg--Lévy]
-Si $X_1,X_2,\dots$ son i.i.d.\ con
+\item[(2)] Recíprocamente, si \(\varphi_X\) es \(k\)-veces derivable en un entorno de \(0\), con \(k\) par, entonces
 \[
-\E[X_1]=\mu,
-\qquad
-\Var(X_1)=\sigma^2\in(0,\infty),
+\E(|X|^k)<\infty,
+\]
+y además
+\[
+\E(X^j)=(-i)^j\varphi_X^{(j)}(0), \qquad j=1,\dots,k.
+\]
+\end{itemize}
+
+\subsection{Esperanza condicional}
+
+La esperanza condicional se define de manera natural a partir del Teorema de Radon--Nikodym.
+
+\begin{defi}[Esperanza condicional respecto de una \(\sigma\)-álgebra]
+Sea \(X\in L^1(\Omega,\mathcal{F},P)\) y sea \(\mathcal{G}\subseteq\mathcal{F}\) una sub-\(\sigma\)-álgebra. Diremos que una variable aleatoria \(Y\) es una \textbf{esperanza condicional} de \(X\) respecto de \(\mathcal{G}\) si:
+\begin{itemize}
+\item \(Y\) es \(\mathcal{G}\)-medible,
+\item para todo \(A\in\mathcal{G}\),
+\[
+\int_A X(\omega)\,dP(\omega)=\int_A Y(\omega)\,dP(\omega).
+\]
+\end{itemize}
+\end{defi}
+
+En ese caso escribimos
+\[
+Y=\E(X\mid\mathcal{G}).
+\]
+
+Equivalentemente, la condición anterior puede escribirse como
+\[
+\E(X\mathbb{1}_A)=\E\big(\E(X\mid\mathcal{G})\mathbb{1}_A\big),
+\qquad \forall A\in\mathcal{G}.
+\]
+
+\begin{teo}[Existencia y unicidad]
+Si \(X\in L^1(\Omega,\mathcal{F},P)\) y \(\mathcal{G}\subseteq\mathcal{F}\) es una sub-\(\sigma\)-álgebra, entonces existe una variable aleatoria
+\[
+\E(X\mid\mathcal{G})
+\]
+y es única casi seguramente.
+\end{teo}
+
+\medskip
+
+\noindent
+\textbf{Idea de la construcción:} definimos una medida con signo sobre \(\mathcal{G}\) mediante
+\[
+\mu(A)=\int_A X\,dP, \qquad A\in\mathcal{G}.
+\]
+Entonces \(\mu\ll P|_{\mathcal{G}}\), y por Radon--Nikodym existe una variable aleatoria \(\mathcal{G}\)-medible \(Y\) tal que
+\[
+\mu(A)=\int_A Y\,dP, \qquad \forall A\in\mathcal{G}.
+\]
+Esa variable es precisamente \(\E(X\mid\mathcal{G})\).
+
+\subsubsection*{Primeros ejemplos}
+
+\begin{itemize}
+\item Si
+\[
+\mathcal{G}=\{\varnothing,\Omega\},
+\]
+entonces toda variable \(\mathcal{G}\)-medible es constante casi seguramente, y se obtiene
+\[
+\E(X\mid\mathcal{G})=\E(X).
+\]
+
+\item Si
+\[
+\mathcal{G}=\mathcal{F},
+\]
+entonces \(X\) es \(\mathcal{G}\)-medible, por lo que
+\[
+\E(X\mid\mathcal{F})=X.
+\]
+\end{itemize}
+
+\subsubsection*{Propiedades}
+
+Sea \(X,Y\in L^1(\Omega,\mathcal{F},P)\) y sea \(\mathcal{G}\subseteq\mathcal{F}\) una sub-\(\sigma\)-álgebra.
+
+\begin{itemize}
+\item[(1)] \textbf{Monotonía.} Si
+\[
+X\leq Y \quad \text{casi seguramente},
 \]
 entonces
 \[
-\frac{\sum_{i=1}^n X_i - n\mu}{\sigma\sqrt{n}}
-\xrightarrow{d}
-\mathcal{N}(0,1).
+\E(X\mid\mathcal{G})\leq \E(Y\mid\mathcal{G})
+\quad \text{casi seguramente}.
 \]
-Equivalentemente,
+
+\item[(2)] \textbf{Esperanza total.}
 \[
-\frac{\sqrt{n}(\overline{X}_n-\mu)}{\sigma}
-\xrightarrow{d}
-\mathcal{N}(0,1).
+\E\big(\E(X\mid\mathcal{G})\big)=\E(X).
+\]
+
+\item[(3)] \textbf{Si \(X\) es \(\mathcal{G}\)-medible, entonces}
+\[
+\E(X\mid\mathcal{G})=X
+\quad \text{casi seguramente}.
+\]
+En particular,
+\[
+\E(X\mid\mathcal{F})=X.
+\]
+
+\item[(4)] \textbf{Linealidad.} Si \(\alpha,\beta\in\mathbb{R}\), entonces
+\[
+\E(\alpha X+\beta Y\mid\mathcal{G})
+=
+\alpha \E(X\mid\mathcal{G})
++
+\beta \E(Y\mid\mathcal{G}).
+\]
+
+\item[(5)] \textbf{Sacar lo conocido.} Si \(Z\) es una variable aleatoria \(\mathcal{G}\)-medible y acotada, entonces
+\[
+\E(ZX\mid\mathcal{G})=Z\,\E(X\mid\mathcal{G}).
+\]
+
+\item[(6)] \textbf{Propiedad de Jensen.} Si \(\phi:\mathbb{R}\to\mathbb{R}\) es convexa y \(\phi(X)\in L^1\), entonces
+\[
+\phi(\E(X\mid\mathcal{G}))
+\leq
+\E(\phi(X)\mid\mathcal{G})
+\quad \text{casi seguramente}.
+\]
+\end{itemize}
+
+\medskip
+
+\noindent
+\textbf{Observación:} tomando esperanza en Jensen, se recupera la desigualdad clásica
+\[
+\phi(\E(X))\leq \E(\phi(X)).
+\]
+
+En particular, tomando \(\phi(x)=x^2\), se obtiene
+\[
+(\E(X))^2\leq \E(X^2),
+\]
+y por lo tanto
+\[
+\Var(X)=\E(X^2)-(\E(X))^2\geq 0.
+\]
+
+\medskip
+
+\noindent
+\textbf{Propiedad de la torre:} si
+\[
+\mathcal{H}\subseteq\mathcal{G}\subseteq\mathcal{F},
+\]
+entonces
+\[
+\E\big(\E(X\mid\mathcal{G})\mid\mathcal{H}\big)=\E(X\mid\mathcal{H}).
+\]
+Además, como \(\E(X\mid\mathcal{H})\) es \(\mathcal{H}\)-medible y \(\mathcal{H}\subseteq\mathcal{G}\), se tiene
+\[
+\E\big(\E(X\mid\mathcal{H})\mid\mathcal{G}\big)=\E(X\mid\mathcal{H}).
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación en \(L^2\):} si \(X\in L^2(\Omega,\mathcal{F},P)\), entonces
+\[
+\E(X\mid\mathcal{G})\in L^2(\Omega,\mathcal{G},P),
+\]
+y más aún,
+\[
+\E(X\mid\mathcal{G})
+=
+\operatorname{Proj}_{L^2(\Omega,\mathcal{G},P)}(X),
+\]
+es decir, la esperanza condicional es la proyección ortogonal de \(X\) sobre el subespacio \(L^2(\Omega,\mathcal{G},P)\).
+
+\medskip
+
+\noindent
+\textbf{Observación:} si \(X\) es independiente de \(\mathcal{G}\), entonces
+\[
+\E(X\mid\mathcal{G})=\E(X).
+\]
+
+\subsubsection*{Condicionar respecto de una variable aleatoria}
+
+Si \(Y\) es una variable aleatoria real, denotamos por
+\[
+\sigma(Y)
+\]
+la menor \(\sigma\)-álgebra que hace a \(Y\) medible. En ese caso escribimos
+\[
+\E(X\mid Y)
+\quad \text{en lugar de} \quad
+\E(X\mid \sigma(Y)).
+\]
+
+\begin{teo}[Doob--Dynkin]
+Si \(X\) es una variable aleatoria \(\sigma(Y)\)-medible, entonces existe una función medible
+\[
+f:\mathbb{R}\to\mathbb{R}
+\]
+tal que
+\[
+X=f(Y)
+\quad \text{casi seguramente}.
 \]
 \end{teo}
 
-\subsubsection*{Idea de la demostración mediante funciones características}
+Como \(\E(X\mid Y)\) es \(\sigma(Y)\)-medible, el teorema anterior implica que existe una función medible \(f\) tal que
+\[
+\E(X\mid Y)=f(Y).
+\]
 
-Definimos
+Muchas veces, de manera informal, se escribe
 \[
-Y_i=\frac{X_i-\mu}{\sigma}.
+\E(X\mid Y=y)=f(y),
 \]
-Entonces $Y_1,Y_2,\dots$ son i.i.d.\ y satisfacen
+entendiendo que se ha escogido una versión de \(\E(X\mid Y)\) de la forma \(f(Y)\).
+
+\subsubsection*{Cálculo mediante la ley de \(Y\)}
+
+Usando la propiedad de la esperanza total,
 \[
-\E[Y_1]=0,
-\qquad
-\Var(Y_1)=1.
+\E(X)=\E\big(\E(X\mid Y)\big).
 \]
+
+Si \(Y\) es discreta con soporte \(\{y_k\}_{k\in I}\), entonces
+\[
+\E(X)=\sum_{k\in I} \E(X\mid Y=y_k)\,P(Y=y_k).
+\]
+
+Si \(Y\) es absolutamente continua con densidad \(f_Y\), entonces
+\[
+\E(X)=\int_{\mathbb{R}} \E(X\mid Y=y)\,f_Y(y)\,dy.
+\]
+
+\subsubsection*{Ejemplo}
 
 Sea
 \[
-S_n=\frac{1}{\sqrt{n}}\sum_{i=1}^n Y_i.
+Y\sim \mathcal{U}(0,1),
 \]
-Basta demostrar que
+y supongamos que, condicionado a \(Y=y\), la variable \(X\) satisface
 \[
-S_n\xrightarrow{d}\mathcal{N}(0,1).
+X=
+\begin{cases}
+1, & \text{con probabilidad } y,\\
+0, & \text{con probabilidad } 1-y.
+\end{cases}
 \]
 
-Como las $Y_i$ son independientes,
+Entonces, para cada \(y\in(0,1)\),
 \[
-\varphi_{S_n}(t)
-=
-\E\left(e^{itS_n}\right)
-=
-\E\left(
-e^{\,it\frac{1}{\sqrt{n}}\sum_{i=1}^n Y_i}
-\right)
-=
-\E\left(
-\prod_{i=1}^n e^{i\frac{t}{\sqrt{n}}Y_i}
-\right).
+\E(X\mid Y=y)=y.
+\]
+Por lo tanto,
+\[
+\E(X\mid Y)=Y.
 \]
 
-Usando independencia,
+Aplicando esperanza total,
 \[
-\varphi_{S_n}(t)
-=
-\prod_{i=1}^n \E\left(e^{i\frac{t}{\sqrt{n}}Y_i}\right)
-=
-\left(\varphi_{Y_1}\left(\frac{t}{\sqrt{n}}\right)\right)^n.
+\E(X)=\E\big(\E(X\mid Y)\big)=\E(Y).
 \]
 
-Ahora bien, como $\E[Y_1]=0$ y $\E[Y_1^2]=1$, se tiene el desarrollo alrededor de $0$:
+Como \(Y\sim \mathcal{U}(0,1)\),
 \[
-\varphi_{Y_1}(u)=1-\frac{u^2}{2}+o(u^2),
-\qquad u\to 0.
+\E(Y)=\int_0^1 y\,dy=\frac12.
 \]
 
-Tomando
+En consecuencia,
 \[
-u=\frac{t}{\sqrt{n}},
-\]
-obtenemos
-\[
-\varphi_{Y_1}\left(\frac{t}{\sqrt{n}}\right)
-=
-1-\frac{t^2}{2n}+o\left(\frac{1}{n}\right).
-\]
-
-Por tanto,
-\[
-\varphi_{S_n}(t)
-=
-\left(1-\frac{t^2}{2n}+o\left(\frac{1}{n}\right)\right)^n
-\to e^{-t^2/2}.
-\]
-
-Pero
-\[
-e^{-t^2/2}
-\]
-es la función característica de una variable $\mathcal{N}(0,1)$. Luego, por el Teorema de continuidad de Lévy,
-\[
-S_n\xrightarrow{d}\mathcal{N}(0,1).
-\]
-
-\subsubsection*{Interpretación}
-
-El TCL afirma que, para $n$ grande,
-\[
-\overline{X}_n
-\approx
-\mathcal{N}\left(\mu,\frac{\sigma^2}{n}\right).
-\]
-
-Más precisamente, la cantidad
-\[
-\frac{\sqrt{n}(\overline{X}_n-\mu)}{\sigma}
-\]
-se comporta aproximadamente como una normal estándar cuando $n$ es grande.
-
-Esta aproximación es una de las bases de la inferencia estadística clásica.
-
-\subsection{Herramientas útiles para inferencia asintótica}
-
-\subsubsection*{Teorema de mapeo continuo}
-
-\begin{teo}[Teorema de mapeo continuo]
-Si
-\[
-X_n\xrightarrow{d} X
-\]
-y $g:\mathbb{R}\to\mathbb{R}$ es continua, entonces
-\[
-g(X_n)\xrightarrow{d} g(X).
-\]
-\end{teo}
+\E(X)=\frac12.
+\] 
 
 \medskip
 
 \noindent
-\textbf{Observación:} este resultado permite transportar convergencia en distribución a través de funciones continuas.
+\textbf{Recordatorio:} si \(Y\) es una variable aleatoria discreta y \(y\) satisface \(P(Y=y)>0\), entonces puede escribirse
+\[
+\E(X\mid Y=y)
+=
+\frac{\E(X\mathbb{1}_{\{Y=y\}})}{P(Y=y)}.
+\]
 
-\subsubsection*{Teorema de Slutsky}
+\medskip
 
-\begin{teo}[Teorema de Slutsky]
-Si
+\noindent
+Además, si \(\{B_u\}_{u\in I}\) es una partición medible de \(\Omega\) con \(P(B_u)>0\), entonces para todo evento \(A\in\mathcal{F}\),
 \[
-X_n\xrightarrow{d} X
-\qquad\text{y}\qquad
-Y_n\xrightarrow{P} c,
+P(A)=\sum_{u\in I} P(A\mid B_u)\,P(B_u),
 \]
-donde $c$ es una constante, entonces:
+que es la fórmula de probabilidades totales.
+
+\medskip
+
+\noindent
+\textbf{Interpretación:} la variable aleatoria \(\E(X\mid Y)\) representa la mejor predicción de \(X\) cuando se conoce la información contenida en \(Y\).
+
+\medskip
+
+\noindent
+\textbf{Recordemos algunas identidades básicas:}
+\begin{itemize}
+\item[(1)] 
 \[
-X_n+Y_n \xrightarrow{d} X+c,
+\E(X)=\E(X\mid \{\varnothing,\Omega\}).
 \]
+
+\item[(2)] 
 \[
-X_nY_n \xrightarrow{d} cX,
+\E(X\mid \mathcal{F})=X.
 \]
-y, si $c\neq 0$,
+
+\item[(3)] \(\E(X\mid Y)\) es una variable aleatoria \(\sigma(Y)\)-medible.
+
+\item[(4)] Si existe una versión de \(\E(X\mid Y)\) de la forma \(f(Y)\), entonces se escribe informalmente
 \[
-\frac{X_n}{Y_n}\xrightarrow{d}\frac{X}{c}.
+\E(X\mid Y=y)=f(y).
+\]
+
+\item[(5)] Se tiene la fórmula de la esperanza total:
+\[
+\E(X)=\E(\E(X\mid Y)).
+\]
+Más explícitamente, si existe una versión \(y\mapsto \E(X\mid Y=y)\), entonces
+\[
+\E(X)=\int_{\mathbb{R}} \E(X\mid Y=y)\,P_Y(dy).
+\]
+\end{itemize}
+
+\subsubsection*{Ejemplo}
+
+Sea
+\[
+Y\sim \mathcal{U}(0,1),
+\]
+y supongamos que, condicionado a \(Y=y\), la variable \(X\) verifica
+\[
+X=
+\begin{cases}
+1, & \text{con probabilidad } y,\\
+0, & \text{con probabilidad } 1-y.
+\end{cases}
+\]
+
+Entonces
+\[
+\E(X\mid Y=y)=y.
+\]
+Por lo tanto,
+\[
+\E(X\mid Y)=Y.
+\]
+Luego, por la fórmula de la esperanza total,
+\[
+\E(X)=\E(\E(X\mid Y))=\E(Y)=\frac12.
+\]
+
+\medskip
+
+\noindent
+\textbf{Proposición:} si \(X\) e \(Y\) son variables aleatorias independientes, entonces
+\[
+\E(X\mid Y)=\E(X).
+\]
+
+\textbf{Demostración:} la variable \(\E(X)\) es constante, luego es \(\sigma(Y)\)-medible. Además, para todo \(A\in\sigma(Y)\),
+\[
+\E(X\mathbb{1}_A)=\E(X)\E(\mathbb{1}_A)=\E(X)P(A)
+=
+\E\big(\E(X)\mathbb{1}_A\big).
+\]
+Por unicidad casi segura de la esperanza condicional,
+\[
+\E(X\mid Y)=\E(X).
+\]
+\hfill \(\square\)
+
+\medskip
+
+\noindent
+Más generalmente, si \(Z\) es \(\sigma(Y)\)-medible y acotada, entonces
+\[
+\E(XZ\mid Y)=Z\,\E(X\mid Y).
+\]
+En particular, si además \(X\perp Y\), entonces
+\[
+\E(XZ\mid Y)=Z\,\E(X).
+\]
+
+\subsubsection*{Ejemplo}
+
+Sean \(X,Y\) variables aleatorias i.i.d.\ y definamos
+\[
+Z=X+Y.
+\]
+Queremos calcular \(\E(X\mid Z)\).
+
+Como \(X\) e \(Y\) tienen la misma ley y \(Z\) es simétrica en \(X\) e \(Y\), se tiene
+\[
+\E(X\mid Z)=\E(Y\mid Z).
+\]
+Por linealidad,
+\[
+\E(X+Y\mid Z)=\E(X\mid Z)+\E(Y\mid Z).
+\]
+Pero como \(Z=X+Y\) es \(\sigma(Z)\)-medible,
+\[
+\E(X+Y\mid Z)=Z.
+\]
+Entonces
+\[
+Z=2\,\E(X\mid Z),
+\]
+y por tanto
+\[
+\E(X\mid Z)=\frac{Z}{2}.
+\]
+
+\subsubsection*{Ejemplo}
+
+Sean \(X,Y\) variables aleatorias i.i.d.\ con ley \(\mathcal{U}(0,1)\), y definamos
+\[
+Z=\min\{X,Y\}.
+\]
+Queremos calcular \(\E(Z\mid X)\) y deducir \(\E(Z)\).
+
+Como \(Y\) es independiente de \(X\), para \(x\in[0,1]\) se tiene
+\[
+\E(Z\mid X=x)=\E(\min\{x,Y\}).
+\]
+Ahora,
+\[
+\min\{x,Y\}
+=
+\begin{cases}
+Y, & \text{si } Y\leq x,\\
+x, & \text{si } Y>x.
+\end{cases}
+\]
+Como \(Y\sim \mathcal{U}(0,1)\),
+\[
+\E(\min\{x,Y\})
+=
+\int_0^x y\,dy+\int_x^1 x\,dy
+=
+\frac{x^2}{2}+x(1-x)
+=
+x-\frac{x^2}{2}.
+\]
+Luego,
+\[
+\E(Z\mid X)=X-\frac{X^2}{2}.
+\]
+
+Aplicando esperanza total,
+\[
+\E(Z)=\E(\E(Z\mid X))
+=
+\E\left(X-\frac{X^2}{2}\right).
+\]
+Como \(X\sim \mathcal{U}(0,1)\),
+\[
+\E(X)=\frac12,
+\qquad
+\E(X^2)=\int_0^1 x^2\,dx=\frac13.
+\]
+Por consiguiente,
+\[
+\E(Z)=\frac12-\frac12\cdot\frac13=\frac13.
+\]
+
+\subsection{Modos de convergencia}
+
+Sean \((X_n)_{n\in\mathbb{N}}\) y \(X\) variables aleatorias con valores en \(\mathbb{R}^d\).
+
+\subsubsection*{(1) Convergencia casi segura}
+
+Decimos que
+\[
+X_n \xrightarrow{c.s.} X
+\]
+si
+\[
+P\big(\{\omega\in\Omega:\; X_n(\omega)\to X(\omega)\}\big)=1.
+\]
+
+Equivalentemente,
+\[
+P\left(\left\{\omega\in\Omega:\forall \varepsilon>0,\ \exists N(\omega)\in\mathbb{N}\ \text{tal que}\ n\geq N(\omega)\Rightarrow |X_n(\omega)-X(\omega)|<\varepsilon\right\}\right)=1.
+\]
+
+\medskip
+
+\noindent
+\textbf{Ejemplo:} si \((X_n)_{n\in\mathbb{N}}\) son i.i.d.\ y \(\E(|X_1|)<\infty\), entonces
+\[
+\frac1n\sum_{i=1}^n X_i \xrightarrow{c.s.} \E(X_1).
+\]
+Este es el contenido de la ley fuerte de los grandes números.
+
+\subsubsection*{(2) Convergencia en probabilidad}
+
+Decimos que
+\[
+X_n \xrightarrow{P} X
+\]
+si para todo \(\varepsilon>0\),
+\[
+P(|X_n-X|\geq \varepsilon)\xrightarrow[n\to\infty]{}0.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación:}
+\[
+X_n\xrightarrow{c.s.}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{P}X.
+\]
+
+\begin{prop}[Desigualdad de Markov]
+Sea \(Y\) una variable aleatoria real no negativa casi seguramente. Entonces, para todo \(a>0\),
+\[
+P(Y\geq a)\leq \frac{\E(Y)}{a}.
+\]
+\end{prop}
+
+\textbf{Demostración:} como \(Y\geq 0\) casi seguramente,
+\[
+\E(Y)=\int_\Omega Y\,dP \geq \int_{\{Y\geq a\}} Y\,dP.
+\]
+Pero en el conjunto \(\{Y\geq a\}\) se tiene \(Y\geq a\), así que
+\[
+\int_{\{Y\geq a\}} Y\,dP \geq a\,P(Y\geq a).
+\]
+Por lo tanto,
+\[
+\E(Y)\geq a\,P(Y\geq a),
+\]
+y de aquí se concluye que
+\[
+P(Y\geq a)\leq \frac{\E(Y)}{a}.
+\]
+\hfill \(\square\)
+
+\medskip
+
+\noindent
+\textbf{Corolario:} si \(Y\in L^p\) con \(p\geq 1\), entonces para todo \(a>0\),
+\[
+P(|Y|\geq a)\leq \frac{\E(|Y|^p)}{a^p}.
+\]
+
+\textbf{Demostración:} basta aplicar Markov a la variable no negativa \(|Y|^p\).
+\hfill \(\square\)
+
+\begin{prop}[Desigualdad de Chebyshev]
+Si \(X\in L^2\), entonces para todo \(\varepsilon>0\),
+\[
+P(|X-\E(X)|\geq \varepsilon)\leq \frac{\Var(X)}{\varepsilon^2}.
+\]
+\end{prop}
+
+\textbf{Demostración:} aplicamos Markov a la variable
+\[
+Y=(X-\E(X))^2,
+\]
+que es no negativa. Entonces
+\[
+P\big((X-\E(X))^2\geq \varepsilon^2\big)
+\leq
+\frac{\E\big((X-\E(X))^2\big)}{\varepsilon^2}
+=
+\frac{\Var(X)}{\varepsilon^2}.
+\]
+Como
+\[
+\{(X-\E(X))^2\geq \varepsilon^2\}
+=
+\{|X-\E(X)|\geq \varepsilon\},
+\]
+se concluye el resultado.
+\hfill \(\square\)
+
+\subsubsection*{Ejemplo: ley débil de los grandes números en \(L^2\)}
+
+Sean \((X_n)_{n\in\mathbb{N}}\) variables aleatorias i.i.d.\ con \(X_1\in L^2\), y definamos
+\[
+\overline{X}_n=\frac1n\sum_{i=1}^n X_i.
+\]
+Entonces
+\[
+\overline{X}_n\xrightarrow{P}\E(X_1).
+\]
+
+En efecto, por Chebyshev,
+\[
+P\big(|\overline{X}_n-\E(X_1)|\geq \varepsilon\big)
+\leq
+\frac{\Var(\overline{X}_n)}{\varepsilon^2}.
+\]
+Como las variables son i.i.d.,
+\[
+\Var(\overline{X}_n)
+=
+\Var\left(\frac1n\sum_{i=1}^n X_i\right)
+=
+\frac{1}{n^2}\sum_{i=1}^n \Var(X_i)
+=
+\frac{\Var(X_1)}{n}.
+\]
+Luego,
+\[
+P\big(|\overline{X}_n-\E(X_1)|\geq \varepsilon\big)
+\leq
+\frac{\Var(X_1)}{n\varepsilon^2}
+\xrightarrow[n\to\infty]{}0.
+\]
+Por tanto,
+\[
+\overline{X}_n\xrightarrow{P}\E(X_1).
+\]
+
+\subsubsection*{(3) Convergencia en \(L^p\)}
+
+Sea \(p\geq 1\). Diremos que
+\[
+X_n\xrightarrow{L^p}X
+\]
+si
+\[
+\E(|X_n-X|^p)\xrightarrow[n\to\infty]{}0.
+\]
+
+Equivalentemente,
+\[
+\|X_n-X\|_p\to 0,
+\qquad
+\text{donde }
+\|Z\|_p:=\big(\E(|Z|^p)\big)^{1/p}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación:} si
+\[
+X_n\xrightarrow{L^p}X,
+\]
+entonces necesariamente \(X\in L^p\).
+
+\medskip
+
+\noindent
+Además, por el corolario de Markov,
+\[
+P(|X_n-X|\geq \varepsilon)
+\leq
+\frac{\E(|X_n-X|^p)}{\varepsilon^p}.
+\]
+Por lo tanto,
+\[
+X_n\xrightarrow{L^p}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{P}X.
+\]
+
+\begin{teo}[Convergencia dominada en \(L^p\)]
+Sea \(p\geq 1\). Si
+\[
+X_n\xrightarrow{c.s.}X
+\]
+y existe \(Y\in L^p\) tal que
+\[
+|X_n|\leq Y
+\quad \text{casi seguramente, para todo } n\in\mathbb{N},
+\]
+entonces
+\[
+X_n\xrightarrow{L^p}X.
 \]
 \end{teo}
 
-\subsubsection*{Aplicación típica}
-
-Supongamos que
+\textbf{Demostración:} como \(X_n\to X\) casi seguramente y \(|X_n|\leq Y\), se tiene también
 \[
-\frac{\sqrt{n}(\overline{X}_n-\mu)}{\sigma}
-\xrightarrow{d}
-\mathcal{N}(0,1),
+|X|\leq Y
+\quad \text{casi seguramente}.
 \]
-y además que $S_n$ es un estimador tal que
+Luego,
 \[
-S_n\xrightarrow{P}\sigma.
+|X_n-X|^p\to 0
+\quad \text{casi seguramente}.
 \]
-
-Entonces, por Slutsky,
+Además,
 \[
-\frac{\sqrt{n}(\overline{X}_n-\mu)}{S_n}
-\xrightarrow{d}
-\mathcal{N}(0,1).
+|X_n-X|^p \leq (|X_n|+|X|)^p \leq (2Y)^p.
 \]
-
-Este tipo de resultado aparece constantemente en inferencia estadística, cuando se reemplaza un parámetro desconocido por un estimador consistente.
-
-\section{Copypaste de comandos}
-
-\begin{verbatim}
-\section{Título de la sección}             -> Crea una sección principal.
-
-\subsection{Título de la subsección}       -> Crea una subsección dentro de una sección.
-
-\textbf{texto en negrita}                  -> Pone el texto en negrita.
-
-\emph{texto en énfasis}                    -> Da énfasis (normalmente cursiva).
-
-\begin{defi}[Nombre de la definición]
-  Texto de la definición.
-\end{defi}
--> Entorno para escribir una definición.
-
-\begin{teo}[Nombre del teorema]
-  Texto del teorema.
-\end{teo}
--> Entorno para enunciar un teorema.
-
-\begin{obs}
-  Texto de la observación.
-\end{obs}
--> Entorno para agregar una observación o comentario.
-
-\begin{enumerate}
-  \item Primer ítem.
-  \item Segundo ítem.
-\end{enumerate}
--> Lista numerada; cada \item agrega un elemento.
-
-$X_1, X_2, \ldots, X_n \iid f(\cdot\,;\theta)$   -> Notación de muestra i.i.d. con distribución f.
-
-$\E[X]$                                        -> Valor esperado de X.
-
-$\bar{X}_n$                                    -> Media muestral.
-
-$\hat{\theta}$                                -> Estimador de theta.
-
-$\sigma^2$                                     -> Varianza poblacional.
-
-$\theta \in \Theta$                          -> El parámetro theta pertenece al espacio paramétrico Theta.
-
+Como \(Y\in L^p\), se tiene \((2Y)^p\in L^1\). Aplicando el Teorema de Convergencia Dominada,
 \[
-  \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i
+\E(|X_n-X|^p)\to 0.
 \]
--> Fórmula de la media muestral usando suma.
-
+Esto significa precisamente que
 \[
-  \bar{X}_n \xrightarrow{\text{c.s.}} \mu
+X_n\xrightarrow{L^p}X.
 \]
--> Convergencia casi segura de la media muestral hacia mu.
-\end{verbatim}
+\hfill \(\square\)
+
+\medskip
+
+\noindent
+\textbf{Observación:} en particular, el caso \(p=1\) recupera la convergencia dominada clásica.
+
+\medskip
+
+\noindent
+\textbf{Otra consecuencia:} si \(X_n\xrightarrow{L^p}X\) con \(p\geq 1\), entonces
+\[
+\E(|X_n|^p)\to \E(|X|^p).
+\]
+En efecto, \(\|X_n-X\|_p\to 0\) implica \(\|X_n\|_p\to \|X\|_p\), y por ende
+\[
+\E(|X_n|^p)=\|X_n\|_p^p \to \|X\|_p^p=\E(|X|^p).
+\]
+
+\medskip
+
+\noindent
+Además, como estamos en un espacio de probabilidad, si \(p\geq 1\) entonces
+\[
+\|Z\|_1\leq \|Z\|_p.
+\]
+Por tanto,
+\[
+X_n\xrightarrow{L^p}X
+\quad\Longrightarrow\quad
+X_n\xrightarrow{L^1}X,
+\]
+y en consecuencia
+\[
+\E(X_n)\to \E(X).
+\]
+
+\subsubsection*{(4) Convergencia en ley}
+
+Diremos que
+\[
+X_n\xrightarrow{\mathcal{L}}X
+\]
+si para toda función continua y acotada
+\[
+f:\mathbb{R}^d\to\mathbb{R},
+\]
+se tiene
+\[
+\E(f(X_n))\xrightarrow[n\to\infty]{}\E(f(X)).
+\]
+
+Equivalentemente, la sucesión de leyes \(P_{X_n}\) converge débilmente hacia \(P_X\).
+
+\medskip
+
+\noindent
+\textbf{Observación:} la convergencia en ley también se denomina \textbf{convergencia débil de leyes}.
+
+\medskip
+
+\noindent
+\textbf{Observación:} si
+\[
+X_n\xrightarrow{P}X,
+\]
+entonces
+\[
+X_n\xrightarrow{\mathcal{L}}X.
+\]
